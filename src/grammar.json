@@ -14,8 +14,20 @@
       }
     },
     "line_comment": {
-      "type": "PATTERN",
-      "value": "#\\d*\\n"
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "#"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
     },
     "basety": {
       "type": "CHOICE",
