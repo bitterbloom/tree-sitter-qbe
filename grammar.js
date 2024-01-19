@@ -14,7 +14,12 @@ module.exports = grammar({
     rules: {
         source_file: t => rep(t.def),
 
-        line_comment: _ => /#\d*\n/,
+        line_comment: _ => token(
+            seq(
+                '#',
+                /.*/,
+            ),
+        ),
 
         basety: _ => choice(
             // 32, 64
