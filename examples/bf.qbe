@@ -1,0 +1,147 @@
+# Copyright (c) 2021 Brian Callahan <bcallah@openbsd.org>
+# 
+# Permission to use, copy, modify, and distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.# Brainfuck compiler in QBE.
+
+# Taken from:   https://github.com/ibara/bf.ssa
+# Explained in: https://briancallahan.net/blog/20210829.html
+
+function $dputs(l %s, w %fd) {	# Static function with parameters
+@start
+@loop
+	%ch =w loadub %s	# Get byte at current string location
+	jnz %ch, @pbyte, @done	# ch != 0 ? @pbyte : @done
+@pbyte
+	storew %ch, $ch		# Put byte into write buffer
+	%r =l call $write(w %fd, l $ch, l 1)
+	%s =l add %s, 1		# Next character in string
+	jmp @loop
+@done
+	ret			# All functions end with ret, jmp, or jnz
+}
+
+function $mismatch() {		# Static function without parameters
+@start
+	call $dputs(l $bmis, w 2)
+	call $exit(w 1)		# Can call C functions at any time
+	ret
+}
+
+function $islopen() {
+@start
+	%d =w loadsw $depth	# Load value of global variable
+	%d =w add %d, 1		# Because you can only assign to temporaries
+	storew %d, $depth	# Store value to global variable
+	call $dputs(l $lopen, w 1)
+	ret
+}
+
+function $islclose() {
+@start
+	%d =w loadsw $depth
+	%d =w sub %d, 1
+	storew %d, $depth
+	%cmp =w ceqw %d, -1
+	jnz %cmp, @bad, @good	# jnz is the only conditional jump
+@bad
+	call $mismatch()
+	ret
+@good
+	call $dputs(l $lclose, w 1)
+	ret
+}
+
+export function w $main() {	# Function
+@start
+	call $dputs(l $prologue, w 1)
+@loop
+	%r =l call $read(w 0, l $ch, l 1)
+	%cmp =w ceqw %r, 1
+	jnz %cmp, @maybeleft, @eof
+@maybeleft
+	%b =w loadub $ch	# Bytes must be loaded as words
+	%cmp =w ceqw %b, 60
+	jnz %cmp, @isleft, @mayberight
+@isleft
+	call $dputs(l $left, w 1)
+	jmp @loop
+@mayberight
+	%cmp =w ceqw %b, 62
+	jnz %cmp, @isright, @maybedec
+@isright
+	call $dputs(l $right, w 1)
+	jmp @loop
+@maybedec
+	%cmp =w ceqw %b, 45
+	jnz %cmp, @isdec, @maybeinc
+@isdec
+	call $dputs(l $dec, w 1)
+	jmp @loop
+@maybeinc
+	%cmp =w ceqw %b, 43
+	jnz %cmp, @isinc, @maybegetchar
+@isinc
+	call $dputs(l $inc, w 1)
+	jmp @loop
+@maybegetchar
+	%cmp =w ceqw %b, 44
+	jnz %cmp, @isgetchar, @maybeputchar
+@isgetchar
+	call $dputs(l $gchar, w 1)
+	jmp @loop
+@maybeputchar
+	%cmp =w ceqw %b, 46
+	jnz %cmp, @isputchar, @maybelopen
+@isputchar
+	call $dputs(l $pchar, w 1)
+	jmp @loop
+@maybelopen
+	%cmp =w ceqw %b, 91
+	jnz %cmp, @islopen, @maybelclose
+@islopen
+	call $islopen()
+	jmp @loop
+@maybelclose
+	%cmp =w ceqw %b, 93
+	jnz %cmp, @islclose, @loop
+@islclose
+	call $islclose()
+	jmp @loop
+@eof
+	%d =w loadsw $depth
+	jnz %d, @mismatch, @done
+@mismatch
+	call $mismatch()
+	ret 0
+@done
+	call $dputs(l $epilogue, w 1)
+	ret 0
+}
+
+# Global variables
+data $ch = { b 0 }
+data $depth = { w 0 }
+
+# Strings
+data $bmis = { b "bfc: bracket mismatch\n", b 0 }
+
+data $prologue = { b "char a[65536], *p=a;\nint\nmain(void)\n{\n", b 0 }
+data $left = { b "p-=1;\n", b 0 }
+data $right = { b "p+=1;\n", b 0 }
+data $dec = { b "*p-=1;\n", b 0 }
+data $inc = { b "*p+=1;\n", b 0 }
+data $gchar = { b "*p=getchar();\n", b 0 }
+data $pchar = { b "putchar(*p);\n", b 0 }
+data $lopen = { b "while(*p){\n", b 0 }
+data $lclose = { b "}\n", b 0 }
+data $epilogue = { b "return 0;\n}\n", b 0 }
+

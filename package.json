@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-qbe",
+  "version": "0.0.0",
+  "description": "",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bitterbloom",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitterbloom/tree-sitter-qbe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bitterbloom/tree-sitter-qbe/issues"
+  },
+  "homepage": "https://github.com/bitterbloom/tree-sitter-qbe#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.qbe",
+      "file-types": [
+        "qbe"
+      ],
+      "injection-regex": "^(qbe)$",
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
+}
