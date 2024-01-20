@@ -943,7 +943,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "c(eq|ne|[su][lg][et]|u?o)[dslw]"
+          "value": "c(eq|ne|[su]?[lg][et]|u?o)[dslw]"
         }
       ]
     },

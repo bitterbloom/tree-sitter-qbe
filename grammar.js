@@ -166,7 +166,7 @@ module.exports = grammar({
             'udiv', 'rem', 'urem',
             'or', 'xor', 'and',
             'sar', 'shr', 'shl',
-            /c(eq|ne|[su][lg][et]|u?o)[dslw]/,
+            /c(eq|ne|[su]?[lg][et]|u?o)[dslw]/,
         ),
 
         inst_two: t => seq(
