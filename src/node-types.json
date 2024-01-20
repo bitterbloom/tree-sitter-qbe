@@ -318,25 +318,6 @@
     }
   },
   {
-    "type": "inst_arg",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "temp",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "inst_one",
     "named": true,
     "fields": {},
@@ -345,11 +326,11 @@
       "required": true,
       "types": [
         {
-          "type": "inst_arg",
+          "type": "inst_one_name",
           "named": true
         },
         {
-          "type": "inst_one_name",
+          "type": "val",
           "named": true
         }
       ]
@@ -369,11 +350,11 @@
       "required": true,
       "types": [
         {
-          "type": "inst_arg",
+          "type": "inst_three_name",
           "named": true
         },
         {
-          "type": "inst_three_name",
+          "type": "val",
           "named": true
         }
       ]
@@ -388,11 +369,11 @@
       "required": true,
       "types": [
         {
-          "type": "inst_arg",
+          "type": "inst_two_name",
           "named": true
         },
         {
-          "type": "inst_two_name",
+          "type": "val",
           "named": true
         }
       ]
@@ -536,11 +517,11 @@
       "required": true,
       "types": [
         {
-          "type": "inst_arg",
+          "type": "store_name",
           "named": true
         },
         {
-          "type": "store_name",
+          "type": "val",
           "named": true
         }
       ]
@@ -605,6 +586,10 @@
         {
           "type": "global",
           "named": true
+        },
+        {
+          "type": "temp",
+          "named": true
         }
       ]
     }
@@ -618,7 +603,7 @@
       "required": true,
       "types": [
         {
-          "type": "inst_arg",
+          "type": "val",
           "named": true
         }
       ]

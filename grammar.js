@@ -52,9 +52,14 @@ module.exports = grammar({
             seq('thread', t.global),
         ),
 
+        temp: t => seq(
+            '%', t.ident,
+        ),
+
         val: t => choice(
             t.dynconst,
             t.global,
+            t.temp,
         ),
 
         secname: _ => /".*?"/,
@@ -122,10 +127,6 @@ module.exports = grammar({
             t.aggregate,
         ),
 
-        temp: t => seq(
-            '%', t.ident,
-        ),
-
         param: t => choice(
             seq(t.abity, t.temp),
             seq('env', t.temp),
@@ -143,11 +144,6 @@ module.exports = grammar({
             rep(',', t.label, t.val),
         ),
 
-        inst_arg: t => choice(
-            t.number,
-            t.temp,
-        ),
-
         inst_one_name: _ => choice(
             'neg',
             /load[dsluwhb]{1,2}/,
@@ -162,7 +158,7 @@ module.exports = grammar({
 
         inst_one: t => seq(
             t.inst_one_name,
-            t.inst_arg,
+            t.val,
         ),
 
         inst_two_name: _ => choice(
@@ -175,25 +171,25 @@ module.exports = grammar({
 
         inst_two: t => seq(
             t.inst_two_name,
-            t.inst_arg, ',', t.inst_arg,
+            t.val, ',', t.val,
         ),
 
         inst_three_name: _ => 'blit',
 
         inst_three: t => seq(
             t.inst_three_name,
-            t.inst_arg, ',', t.inst_arg, ',', t.inst_arg,
+            t.val, ',', t.val, ',', t.val,
         ),
 
         store_name: _ => /store[dslwhb]/,
 
         store: t => seq(
             t.store_name,
-            t.inst_arg, ',', t.inst_arg,
+            t.val, ',', t.val,
         ),
 
         vastart: t => seq(
-            'vastart', t.inst_arg,
+            'vastart', t.val,
         ),
 
         call: t => seq(

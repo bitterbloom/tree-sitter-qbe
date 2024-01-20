@@ -197,6 +197,19 @@
         }
       ]
     },
+    "temp": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ident"
+        }
+      ]
+    },
     "val": {
       "type": "CHOICE",
       "members": [
@@ -207,6 +220,10 @@
         {
           "type": "SYMBOL",
           "name": "global"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "temp"
         }
       ]
     },
@@ -713,19 +730,6 @@
         }
       ]
     },
-    "temp": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "%"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ident"
-        }
-      ]
-    },
     "param": {
       "type": "CHOICE",
       "members": [
@@ -828,19 +832,6 @@
         }
       ]
     },
-    "inst_arg": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "number"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "temp"
-        }
-      ]
-    },
     "inst_one_name": {
       "type": "CHOICE",
       "members": [
@@ -891,7 +882,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         }
       ]
     },
@@ -965,7 +956,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         },
         {
           "type": "STRING",
@@ -973,7 +964,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         }
       ]
     },
@@ -990,7 +981,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         },
         {
           "type": "STRING",
@@ -998,7 +989,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         },
         {
           "type": "STRING",
@@ -1006,7 +997,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         }
       ]
     },
@@ -1023,7 +1014,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         },
         {
           "type": "STRING",
@@ -1031,7 +1022,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         }
       ]
     },
@@ -1044,7 +1035,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "inst_arg"
+          "name": "val"
         }
       ]
     },
