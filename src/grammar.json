@@ -1412,6 +1412,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "typedef"
+            },
+            {
+              "type": "SYMBOL",
               "name": "datadef"
             },
             {

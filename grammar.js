@@ -237,6 +237,7 @@ module.exports = grammar({
         def: t => seq(
             rep(t.linkage),
             choice(
+                t.typedef,
                 t.datadef,
                 t.funcdef,
             ),

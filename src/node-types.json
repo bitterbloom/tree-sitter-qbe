@@ -187,6 +187,10 @@
         {
           "type": "linkage",
           "named": true
+        },
+        {
+          "type": "typedef",
+          "named": true
         }
       ]
     }
@@ -566,6 +570,29 @@
       "types": [
         {
           "type": "ident",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typedef",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "subty",
           "named": true
         }
       ]
