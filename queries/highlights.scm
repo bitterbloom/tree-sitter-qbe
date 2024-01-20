@@ -1,7 +1,6 @@
 
 (line_comment) @comment
 
-(const ["s_" "d_"] @number)
 (number) @number
 (string) @string
 

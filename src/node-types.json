@@ -709,10 +709,6 @@
     "named": false
   },
   {
-    "type": "d_",
-    "named": false
-  },
-  {
     "type": "data",
     "named": false
   },
@@ -794,10 +790,6 @@
   },
   {
     "type": "s",
-    "named": false
-  },
-  {
-    "type": "s_",
     "named": false
   },
   {

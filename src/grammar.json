@@ -69,7 +69,7 @@
     },
     "number": {
       "type": "PATTERN",
-      "value": "-?\\d+(\\.\\d+)?"
+      "value": "([sd]_)?-?\\d+(\\.\\d+)?"
     },
     "ident": {
       "type": "PATTERN",
@@ -92,39 +92,8 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "s_"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "d_"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "number"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "number"
         },
         {
           "type": "SYMBOL",

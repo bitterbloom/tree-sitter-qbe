@@ -32,7 +32,7 @@ module.exports = grammar({
             'b', 'h',
         ),
 
-        number: _ => /-?\d+(\.\d+)?/,
+        number: _ => /([sd]_)?-?\d+(\.\d+)?/,
 
         ident: _ => /[a-zA-Z0-9_\.]*/,
 
@@ -41,7 +41,7 @@ module.exports = grammar({
         ),
 
         const: t => choice(
-            seq(opt(choice('s_', 'd_')), t.number),
+            t.number,
             t.global,
         ),
 
