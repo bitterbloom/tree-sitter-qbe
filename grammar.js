@@ -34,7 +34,7 @@ module.exports = grammar({
 
         number: _ => /\d+(\.\d+)?/,
 
-        ident: _ => /[a-zA-Z_\.]\w*/,
+        ident: _ => /[a-zA-Z0-9_\.]*/,
 
         global: t => seq(
             '$', t.ident,
@@ -150,6 +150,7 @@ module.exports = grammar({
 
         inst_one_name: _ => choice(
             'neg',
+            /load[dsluwhb]{1,2}/,
             /alloc(4|8|16)/,
             /ext[suwhb]{1,2}/,
             'truncd',
@@ -169,7 +170,6 @@ module.exports = grammar({
             'udiv', 'rem', 'urem',
             'or', 'zor', 'and',
             'sar', 'shr', 'shl',
-            /load[dsluwhb]{1,2}/,
             /c(eq|ne|[su][lg][et]|u?o)[dslw]/,
         ),
 
@@ -228,7 +228,7 @@ module.exports = grammar({
             t.label,
             rep(t.phi),
             rep(t.inst),
-            t.jump,
+            opt(t.jump),
         ),
 
         funcdef: t => seq(

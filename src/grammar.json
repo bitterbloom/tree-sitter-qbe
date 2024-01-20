@@ -73,7 +73,7 @@
     },
     "ident": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_\\.]\\w*"
+      "value": "[a-zA-Z0-9_\\.]*"
     },
     "global": {
       "type": "SEQ",
@@ -850,6 +850,10 @@
         },
         {
           "type": "PATTERN",
+          "value": "load[dsluwhb]{1,2}"
+        },
+        {
+          "type": "PATTERN",
           "value": "alloc(4|8|16)"
         },
         {
@@ -945,10 +949,6 @@
         {
           "type": "STRING",
           "value": "shl"
-        },
-        {
-          "type": "PATTERN",
-          "value": "load[dsluwhb]{1,2}"
         },
         {
           "type": "PATTERN",
@@ -1279,8 +1279,21 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "jump"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "jump"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
