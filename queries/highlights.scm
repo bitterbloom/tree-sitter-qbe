@@ -28,7 +28,6 @@
 "ret" @keyword.return
 "hlt" @exception
 
-"-" @operator
 "=" @operator
 
 "," @punctuation.delimiter
