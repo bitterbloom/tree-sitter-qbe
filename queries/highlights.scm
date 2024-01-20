@@ -9,7 +9,7 @@
 (subwty) @type.builtin
 (aggregate) @type
 
-(global) @constant
+((global) @constant (#set! "priority" 100))
 (temp)   @variable
 (label)  @label
 
@@ -20,7 +20,7 @@
 (store_name) @keyword.operator
 "vastart"    @keyword.operator
 "call"       @keyword.operator
-(call name: (val) @function)
+(call name: (val) @function (#set! "priority" 101))
 (funcdef name: (global) @function)
 
 "jmp" @repeat
