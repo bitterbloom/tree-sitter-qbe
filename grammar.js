@@ -128,8 +128,8 @@ module.exports = grammar({
         ),
 
         param: t => choice(
-            seq(t.abity, t.temp),
-            seq('env', t.temp),
+            seq(t.abity, t.val),
+            seq('env', t.val),
             seq('...'),
         ),
 

@@ -450,7 +450,7 @@
           "named": true
         },
         {
-          "type": "temp",
+          "type": "val",
           "named": true
         }
       ]
