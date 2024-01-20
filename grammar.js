@@ -164,7 +164,7 @@ module.exports = grammar({
         inst_two_name: _ => choice(
             'add', 'sub', 'div', 'mul',
             'udiv', 'rem', 'urem',
-            'or', 'zor', 'and',
+            'or', 'xor', 'and',
             'sar', 'shr', 'shl',
             /c(eq|ne|[su][lg][et]|u?o)[dslw]/,
         ),

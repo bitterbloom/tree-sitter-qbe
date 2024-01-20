@@ -850,11 +850,11 @@
     "named": false
   },
   {
-    "type": "z",
+    "type": "xor",
     "named": false
   },
   {
-    "type": "zor",
+    "type": "z",
     "named": false
   },
   {
