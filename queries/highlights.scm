@@ -4,6 +4,9 @@
 (number) @number
 (string) @string
 
+(secname) @string
+(secflags) @string
+
 (basety) @type.builtin
 (extty)  @type.builtin
 (subwty) @type.builtin
