@@ -177,8 +177,10 @@ module.exports = grammar({
             t.val, ',', t.val, ',', t.val,
         ),
 
+        store_name: _ => /store[dslwhb]/,
+
         store: t => seq(
-            /store[dslwhb]/,
+            t.store_name,
             t.val, ',', t.val,
         ),
 
@@ -189,7 +191,7 @@ module.exports = grammar({
 
         call: t => seq(
             'call', field("name", t.val),
-            '(', separate(t.param, ','), ')',
+            '(', opt(separate(t.param, ',')), ')',
         ),
 
         inst: t => choice(
@@ -224,7 +226,7 @@ module.exports = grammar({
 
         funcdef: t => seq(
             'function', opt(t.abity), field('name', t.global),
-            '(', separate(t.param, ','), ')', '{',
+            '(', opt(separate(t.param, ',')), ')', '{',
                 rep(t.block),
             '}',
         ),

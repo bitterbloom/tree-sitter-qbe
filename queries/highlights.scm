@@ -16,10 +16,10 @@
 (temp)   @variable
 (label)  @label
 
-"phi" @keyword.operator
+"phi"        @keyword.operator
 (inst_one_name)   @keyword.operator
 (inst_two_name)   @keyword.operator
-(inst_three_name) @keyword.operator
+"blit"       @keyword.operator
 (store_name) @keyword.operator
 "vastart"    @keyword.operator
 "call"       @keyword.operator
