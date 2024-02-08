@@ -43,6 +43,21 @@
     "fields": {}
   },
   {
+    "type": "blit",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "val",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -291,15 +306,15 @@
           "named": true
         },
         {
+          "type": "blit",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
         {
           "type": "inst_one",
-          "named": true
-        },
-        {
-          "type": "inst_three",
           "named": true
         },
         {
@@ -344,25 +359,6 @@
     "type": "inst_one_name",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "inst_three",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "inst_three_name",
-          "named": true
-        },
-        {
-          "type": "val",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "inst_two",
@@ -520,10 +516,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "store_name",
-          "named": true
-        },
         {
           "type": "val",
           "named": true
@@ -693,6 +685,10 @@
     "named": false
   },
   {
+    "type": "blit",
+    "named": false
+  },
+  {
     "type": "call",
     "named": false
   },
@@ -738,10 +734,6 @@
   },
   {
     "type": "ident",
-    "named": true
-  },
-  {
-    "type": "inst_three_name",
     "named": true
   },
   {
@@ -815,10 +807,6 @@
   {
     "type": "shr",
     "named": false
-  },
-  {
-    "type": "store_name",
-    "named": true
   },
   {
     "type": "sub",

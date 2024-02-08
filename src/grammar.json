@@ -894,16 +894,12 @@
         }
       ]
     },
-    "inst_three_name": {
-      "type": "STRING",
-      "value": "blit"
-    },
-    "inst_three": {
+    "blit": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "inst_three_name"
+          "type": "STRING",
+          "value": "blit"
         },
         {
           "type": "SYMBOL",
@@ -927,16 +923,12 @@
         }
       ]
     },
-    "store_name": {
-      "type": "PATTERN",
-      "value": "store[dslwhb]"
-    },
     "store": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "store_name"
+          "type": "PATTERN",
+          "value": "store[dslwhb]"
         },
         {
           "type": "SYMBOL",
@@ -1063,15 +1055,15 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "inst_three"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "call"
                 }
               ]
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "blit"
         },
         {
           "type": "SYMBOL",

@@ -98,6 +98,7 @@ export function w $add(env %e, w %a, w %b) {
 
 function $loop() {
 @start
+        jmp @loop
 @loop
         %x =w phi @start 100, @loop %x1
         %x1 =w sub %x, 1
@@ -114,7 +115,7 @@ function s $add3(s %a, ...) {
 @start
         %ap =l alloc8 32
         vastart %ap
-        %r =s call $vadd(s %a, l %ap)
+        %r =s call $vadd(s %a, ..., l %ap)
         ret %r
 }
 
@@ -125,5 +126,10 @@ function s $vadd(s %a, l %ap) {
         %d =s add %a, %b
         %e =s add %d, %c
         ret %e
+}
+
+function $blit(l %src, l %dst, w %size) {
+@start
+        blit %src, %dst, %size
 }
 

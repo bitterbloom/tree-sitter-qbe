@@ -32,6 +32,7 @@
 "hlt" @exception
 
 "=" @operator
+"..." @operator
 
 "," @punctuation.delimiter
 

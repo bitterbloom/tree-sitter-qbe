@@ -172,22 +172,19 @@ module.exports = grammar({
             t.val, ',', t.val,
         ),
 
-        inst_three_name: _ => 'blit',
-
-        inst_three: t => seq(
-            t.inst_three_name,
+        blit: t => seq(
+            'blit',
             t.val, ',', t.val, ',', t.val,
         ),
 
-        store_name: _ => /store[dslwhb]/,
-
         store: t => seq(
-            t.store_name,
+            /store[dslwhb]/,
             t.val, ',', t.val,
         ),
 
         vastart: t => seq(
-            'vastart', t.val,
+            'vastart',
+            t.val,
         ),
 
         call: t => seq(
@@ -202,10 +199,10 @@ module.exports = grammar({
                 choice(
                     t.inst_one,
                     t.inst_two,
-                    t.inst_three,
                     t.call,
                 ),
             ),
+            t.blit,
             t.store,
             t.vastart,
             t.call,
