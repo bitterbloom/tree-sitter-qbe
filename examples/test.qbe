@@ -31,7 +31,7 @@ function $stuff() {
     %b0 =w cast %f
     %b1 =w xor 2147483648, %b0  # flip the msb
     %rs =s cast %b1
-    %a =w blit 0, 1, 2
+    blit %0, %1, 2
 @start
     %x =w copy 100
     %s =w copy 0
