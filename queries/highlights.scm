@@ -12,6 +12,7 @@
 (subwty) @type.builtin
 (aggregate) @type
 
+; Globals don't have to be constant, but I still think they should have their own group
 ((global) @constant (#set! "priority" 100))
 (temp)   @variable
 (label)  @label
@@ -57,5 +58,7 @@
 "env"
 "align"
 "env"
+"dbgloc"
+"dbgfile"
 ] @keyword
 

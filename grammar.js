@@ -60,15 +60,11 @@ module.exports = grammar({
             t.temp,
         ),
 
-        secname: _ => /".*?"/,
-
-        secflags: _ => /".*?"/,
-
         linkage: t => choice(
             'export',
             'thread',
-            seq('section', t.secname),
-            seq('section', t.secname, t.secflags),
+            seq('section', t.string),
+            seq('section', t.string, t.string),
         ),
 
         aggregate: t => seq(
@@ -91,7 +87,11 @@ module.exports = grammar({
             '}',
         ),
 
-        string: _ => /".*?"/,
+        string: _ => seq(
+            '"',
+            rep(token.immediate(/[^"\n]+/)),
+            '"',
+        ),
 
         dataitem: t => choice(
             seq(t.global, opt('+', t.number)),
@@ -194,6 +194,11 @@ module.exports = grammar({
             '(', opt(separate(t.param, ',')), ')',
         ),
 
+        dbgloc: t => seq(
+            'dbgloc', t.number,
+            opt(',', t.number),
+        ),
+
         inst: t => choice(
             seq(
                 t.temp, '=',
@@ -208,6 +213,7 @@ module.exports = grammar({
             t.store,
             t.vastart,
             t.call,
+            t.dbgloc,
         ),
 
         jump: t => choice(
@@ -231,13 +237,20 @@ module.exports = grammar({
             '}',
         ),
 
-        def: t => seq(
-            rep(t.linkage),
-            choice(
-                t.typedef,
-                t.datadef,
-                t.funcdef,
+        def: t => choice(
+            seq(
+                rep(t.linkage),
+                choice(
+                    t.typedef,
+                    t.datadef,
+                    t.funcdef,
+                ),
             ),
+            t.dbgfile,
+        ),
+
+        dbgfile: t => seq(
+            'dbgfile', t.string,
         ),
     }
 });

@@ -153,14 +153,6 @@
         }
       ]
     },
-    "secname": {
-      "type": "PATTERN",
-      "value": "\".*?\""
-    },
-    "secflags": {
-      "type": "PATTERN",
-      "value": "\".*?\""
-    },
     "linkage": {
       "type": "CHOICE",
       "members": [
@@ -181,7 +173,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "secname"
+              "name": "string"
             }
           ]
         },
@@ -194,11 +186,11 @@
             },
             {
               "type": "SYMBOL",
-              "name": "secname"
+              "name": "string"
             },
             {
               "type": "SYMBOL",
-              "name": "secflags"
+              "name": "string"
             }
           ]
         }
@@ -409,8 +401,32 @@
       ]
     },
     "string": {
-      "type": "PATTERN",
-      "value": "\".*?\""
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^\"\\n]+"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
     },
     "dataitem": {
       "type": "CHOICE",
@@ -1041,6 +1057,40 @@
         }
       ]
     },
+    "dbgloc": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "dbgloc"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "number"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "inst": {
       "type": "CHOICE",
       "members": [
@@ -1093,6 +1143,10 @@
         {
           "type": "SYMBOL",
           "name": "call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dbgloc"
         }
       ]
     },
@@ -1341,36 +1395,58 @@
       ]
     },
     "def": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "linkage"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "typedef"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "datadef"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "funcdef"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dbgfile"
+        }
+      ]
+    },
+    "dbgfile": {
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "linkage"
-              }
-            ]
-          }
+          "type": "STRING",
+          "value": "dbgfile"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "typedef"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "datadef"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "funcdef"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "string"
         }
       ]
     }
@@ -1400,4 +1476,3 @@
   "inline": [],
   "supertypes": []
 }
-

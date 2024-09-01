@@ -184,6 +184,36 @@
     }
   },
   {
+    "type": "dbgfile",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dbgloc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "def",
     "named": true,
     "fields": {},
@@ -193,6 +223,10 @@
       "types": [
         {
           "type": "datadef",
+          "named": true
+        },
+        {
+          "type": "dbgfile",
           "named": true
         },
         {
@@ -314,6 +348,10 @@
           "named": true
         },
         {
+          "type": "dbgloc",
+          "named": true
+        },
+        {
           "type": "inst_one",
           "named": true
         },
@@ -427,11 +465,7 @@
       "required": false,
       "types": [
         {
-          "type": "secflags",
-          "named": true
-        },
-        {
-          "type": "secname",
+          "type": "string",
           "named": true
         }
       ]
@@ -482,16 +516,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "secflags",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "secname",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "source_file",
@@ -633,6 +657,10 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "$",
     "named": false
   },
@@ -710,6 +738,14 @@
   },
   {
     "type": "data",
+    "named": false
+  },
+  {
+    "type": "dbgfile",
+    "named": false
+  },
+  {
+    "type": "dbgloc",
     "named": false
   },
   {
